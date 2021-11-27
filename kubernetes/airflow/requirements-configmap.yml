@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: requirements
+  namespace: airflow
+data:
+  requirements.txt: |
+    apache-airflow-providers-amazon
+    apache-airflow-providers-cncf-kubernetes
+    requests
+    

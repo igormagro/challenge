@@ -1,0 +1,29 @@
+name: Deploy Docker Image
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Authentication
+      run: |
+        docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+    
+    - name: Build Image
+      working-directory: ./docker/spark-operator
+      env:
+        DOCKER_IMAGE: spark-operator
+      run: docker build -t $DOCKER_IMAGE:latest .
+    
+    - name: Tag and Push Docker Image
+      env:
+        DOCKER_IMAGE: spark-operator
+        IMAGE_TAG: v3.1.1-aws
+      run: |
+        docker tag $DOCKER_IMAGE:latest ${{secrets.DOCKER_USER}}/$DOCKER_IMAGE:$IMAGE_TAG
+        docker push ${{secrets.DOCKER_USER}}/$DOCKER_IMAGE:$IMAGE_TAG
