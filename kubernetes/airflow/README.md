@@ -9,7 +9,7 @@ helm show values bitnami/airflow > airflow/values.yaml
 ### Create Service Account and Requirements ConfigMap
 ```bash
 kubectl apply -f requirements-configmap.yml -n airflow
-kubectl create role airflow --verb=get,list,watch --resource=pods,pods/status --namespace=airflow 
+kubectl create role airflow --verb="*" --resource="*" --namespace=airflow 
 kubectl create rolebinding airflow-binding --role=airflow --user=system --serviceaccount=airflow:default -n airflow 
 ```
 ### Deploy Airflow

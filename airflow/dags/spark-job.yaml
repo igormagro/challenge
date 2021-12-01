@@ -1,14 +1,13 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: spark-enem-idade-{{ macros.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") }}
+  name: job-pyspark-batch-346e0ba6
   namespace: airflow
 spec:
   volumes:
     - name: ivy
       emptyDir: {}
   sparkConf:
-    extraJavaOptions: -Dcom.amazonaws.services.s3.enableV4=true
     spark.jars.packages: "org.apache.hadoop:hadoop-aws:2.7.3,org.apache.spark:spark-avro_2.12:3.0.1"
     spark.driver.extraJavaOptions: "-Divy.cache.dir=/tmp -Divy.home=/tmp"
     spark.kubernetes.allocation.batch.size: "10"
@@ -19,7 +18,7 @@ spec:
   mode: cluster
   image: "docker.io/neylsoncrepalde/spark-operator:v3.0.0-aws"
   imagePullPolicy: Always
-  mainApplicationFile: s3a://emr-code-539445819060/ney/pyspark/enem_agrega_idade.py
+  mainApplicationFile: s3a://e370799417405-scripts/spark-scripts/spark_job_aluno.py
   sparkVersion: "3.0.0"
   restartPolicy:
     type: Never

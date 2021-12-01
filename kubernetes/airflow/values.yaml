@@ -187,7 +187,7 @@ configurationConfigMap: ""
 ## @param executor Airflow executor, it should be one of 'SequentialExecutor', 'LocalExecutor', 'CeleryExecutor', 'KubernetesExecutor', 'CeleryKubernetesExecutor'
 ## ref: http://airflow.apache.org/docs/stable/executor/index.html
 ##
-executor: 'KubernetesExecutor'
+executor: 'CeleryExecutor'
 ## Load custom DAGs from a ConfigMap
 ## Note: an init container will be used to prepare the DAGs available in the ConfigMap to be consumed by Airflow containers
 ##
