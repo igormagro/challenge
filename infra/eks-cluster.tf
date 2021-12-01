@@ -13,9 +13,9 @@ module "eks" {
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "m5.xlarge"
+      instance_type                 = "m5.large"
       additional_userdata           = "Kubernetes"
-      asg_desired_capacity          = 3
+      asg_desired_capacity          = 2
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     }
   ]

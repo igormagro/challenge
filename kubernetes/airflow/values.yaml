@@ -170,13 +170,13 @@ auth:
   ## - https://airflow.readthedocs.io/en/stable/howto/secure-connections.html
   ## - https://bcb.github.io/airflow/fernet-key
   ##
-  fernetKey: "hymnx8ltxcRL6sFfZzkmlUU245inPLYC2LBbxEZHyzk="
+  fernetKey: "4H-cV85_hZxXKv8tnEFwoQOYaf01H7zdP0eWcM1afUQ="
   ## This is required for 'helm upgrade' to work properly.
   ## If it is not forced, a random password will be generated.
   ##
   forcePassword: false
   password: "minhasenhasupersegura"
-  username: ibernardes
+  username: "admin"
   ## More info about the secret key at:
   ## - https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#secret-key
   ##
@@ -579,7 +579,7 @@ worker:
   port: 8793
   ## @param worker.replicaCount Number of worker replicas
   ##
-  replicaCount: 3
+  replicaCount: 2
   ## @param worker.hostAliases Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
@@ -798,10 +798,10 @@ git:
     ##     path: /
     ##
     repositories:
-      - repository: "https://github.com/igormagro/igti-edc-final-challenge.git"
+      - repository: "https://github.com/igormagro/challenge.git"
         ## Branch from repository to checkout
         ##
-        branch: "master"
+        branch: "dev"
         ## An unique identifier for repository, must be unique for each repository
         ##
         name: ""
@@ -856,7 +856,7 @@ git:
   ## @param git.sync.resources Sync sidecar container resource requests and limits
   ##
   sync:
-    interval: 30
+    interval: 60
     command: []
     args: []
     extraVolumeMounts: []

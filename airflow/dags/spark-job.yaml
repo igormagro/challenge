@@ -1,7 +1,7 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: spark-job-{{ macros.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') }}
+  name: spark-enem-idade-{{ macros.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") }}
   namespace: airflow
 spec:
   volumes:
@@ -19,7 +19,7 @@ spec:
   mode: cluster
   image: "docker.io/neylsoncrepalde/spark-operator:v3.0.0-aws"
   imagePullPolicy: Always
-  mainApplicationFile: s3a://488842980206-bronze/spark-scripts/enade.py
+  mainApplicationFile: s3a://emr-code-539445819060/ney/pyspark/enem_agrega_idade.py
   sparkVersion: "3.0.0"
   restartPolicy:
     type: Never
@@ -32,7 +32,8 @@ spec:
         name: aws-credentials
         key: aws_secret_access_key
     cores: 1
-    memory: "1g"
+    coreLimit: "1200m"
+    memory: "4g"
     labels:
       version: 3.0.0
     serviceAccount: spark
@@ -47,9 +48,9 @@ spec:
       AWS_SECRET_ACCESS_KEY:
         name: aws-credentials
         key: aws_secret_access_key
-    cores: 2
-    instances: 2
-    memory: "1g"
+    cores: 3
+    instances: 3
+    memory: "4g"
     labels:
       version: 3.0.0
     volumeMounts:
