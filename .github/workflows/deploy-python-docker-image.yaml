@@ -15,15 +15,15 @@ jobs:
         docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
     
     - name: Build Image
-      working-directory: ./docker/spark-operator
+      working-directory: ./docker/inep_ingestion
       env:
-        DOCKER_IMAGE: spark-operator
+        DOCKER_IMAGE: python-container
       run: docker build -t $DOCKER_IMAGE:latest .
     
     - name: Tag and Push Docker Image
       env:
-        DOCKER_IMAGE: spark-operator
-        IMAGE_TAG: v3.1.1-aws
+        DOCKER_IMAGE: python-container
+        IMAGE_TAG: latest
       run: |
         docker tag $DOCKER_IMAGE:latest ${{secrets.DOCKER_USER}}/$DOCKER_IMAGE:$IMAGE_TAG
         docker push ${{secrets.DOCKER_USER}}/$DOCKER_IMAGE:$IMAGE_TAG

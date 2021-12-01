@@ -1,5 +1,5 @@
 # Docker image [gcp]
-FROM gcr.io/spark-operator/spark-py:v3.1.1
+FROM gcr.io/spark-operator/spark-py:v3.0.0
 LABEL Mantainers: Igor Magro
   
 # Using root user

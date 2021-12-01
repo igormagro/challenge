@@ -2,12 +2,12 @@
 
 ### Create Service Account
 ```bash
-k create serviceaccount spark -n processing
+k create serviceaccount spark -n airflow
 ```
 
 ### Create Cluster Role Binding
 ```bash
-k create clusterrolebinding spark-role-binding --clusterrole=edit --serviceaccount=processing:spark -n processing
+k create clusterrolebinding spark-role-binding --clusterrole=edit --serviceaccount=airflow:spark -n airflow
 ```
 
 ### Add Helm Repo
@@ -17,13 +17,13 @@ helm repo add spark-operator https://googlecloudplatform.github.io/spark-on-k8s-
 
 ### Deploy on K8s
 ```bash
-helm install spark spark-operator/spark-operator -n processing
+helm install spark spark-operator/spark-operator -n airflow
 ```
 
 ### Create Secret
 
 ```bash
 kubectl create secret generic aws-credentials \
-  --from-literal=aws_access_key_id="aws_access_key_id" \
-  --from-literal=aws_secret_access_key="aws_secret_access_key" -n processing
+  --from-literal=aws_access_key_id="AKIAVMVK6DA64OV62M3N" \
+  --from-literal=aws_secret_access_key="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" -n airflow
 ```
