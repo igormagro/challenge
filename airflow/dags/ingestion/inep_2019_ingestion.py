@@ -65,3 +65,4 @@ with DAG(
         aws_conn_id='aws_default',
     )
 
+donwload_and_ingest >> verify_file_existence_raw_zone
